@@ -22,7 +22,19 @@ const userSchema = new mongoose.Schema({
     type: Number,
     
     required: [true, "Age is required"]
-  }
+  },
+  isDoctor: {
+    type: Boolean,
+    default: false,
+  },
+  notifcation: {
+    type: Array,
+    default: [],
+  },
+  seennotification: {
+    type: Array,
+    default: [],
+  },
 });
 
 const adharSchema = new mongoose.Schema(
