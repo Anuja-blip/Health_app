@@ -6,10 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 const otp = () => {
-   
-const onfinishHandler = () => {
+  const onfinishHandler=()=>{
     console.log("clicked");
-};
+  }
     return (
     <div className="form-container ">
         <Form

@@ -1,38 +1,30 @@
-import React,{useEffect} from 'react'
+import { Row } from 'antd';
+import React,{useEffect,useState} from 'react'
+import Layout from "../components/Layout";
+import DoctorList from '../components/DoctorList';
 
 const HomePage = () => {
-//   const [credentials, setCredentials] = useState({
-//     email: "",
-//     password: "",
-//     });
-
-// const onfinishHandler = async (values) => {
-// console.log(credentials);
-// const response = await fetch(`http://localhost:8080/api/v1/user/login`, {
-// method: "POST",
-// headers: {
-// "Content-Type": "application/json",
-// },
-// body: JSON.stringify({ email: credentials.email, 
-// password: credentials.password }),
-// });
-// const data = await response.json();
-// console.log(data);
-
-
+  const [doctors, setDoctors] = useState([]);
   const getUserData = async () => {
+    
+
     try {
       const res = await fetch(
-        "http://localhost:8080/api/v1/user/getUserData",
+        "http://localhost:8080/api/v1/user/getAllDoctors",
 
         {
-          method:"POST",
+          method:"GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+           // Authorization: "Bearer " + localStorage.getItem("token"),
           }
         }
       );
+
+      const data= await res.json();
+      if (data.success) {
+        setDoctors(data.data);
+      }
       
     } catch (error) {
       console.log(error);
@@ -44,7 +36,13 @@ const HomePage = () => {
   }, []);
   return (
     <div>
-      <h1>homepage</h1>
+      <Layout>
+      <h1 className="text-center">Home Page</h1>
+      <Row>
+        {doctors && doctors.map((doctor) => <DoctorList doctor={doctor} />)}
+      </Row>
+      </Layout>
+     
     </div>
   )
 }

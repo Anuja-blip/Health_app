@@ -29,12 +29,12 @@ const onfinishHandler = async(values) => {
         console.log(data);
 
         if(data.success == true) {
-          console.log("otp send successfully");
-          message.success("otp send Successfully!!");
-          navigate("/Otp");
+          console.log("Adhar verified successfully");
+          message.success("Adhar verified Successfully!!");
+          navigate("/Abha");
         } else {
           message.error(data.message);
-          console.log("otp is not sent");
+          console.log("Adhar is not verified");
         }
 };
 
